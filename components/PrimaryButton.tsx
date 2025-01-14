@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: "center",
+    fontWeight: "bold",
     color: colorTheme.white,
   },
   pressed: {
