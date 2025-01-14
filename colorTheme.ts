@@ -1,6 +1,7 @@
 export const colorTheme = {
     lightDarkMagenta: "#72063c",
     darkMagenta: "#5b0430",
+    darkestMagenta: "#4e0327",
     yellowIsh: "#ddb52F",
     white: "#ffffff",
     black: "#000000",
