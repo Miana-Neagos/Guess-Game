@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
-import { colorTheme } from "../colorTheme";
+import { colorTheme } from "../colorThemes";
 
 type PrimaryButtonProps = {
   children: string;

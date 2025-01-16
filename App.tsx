@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { ImageBackground, StyleSheet } from "react-native";
 import StartGameScreen from "./screens/StartGameScreen";
-import { colorTheme } from "./colorTheme";
+import { colorTheme } from "./colorThemes";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import GameScreen from "./screens/GameScreen";

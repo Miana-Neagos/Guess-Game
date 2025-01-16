@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { colorTheme } from "../colorTheme";
+import { colorTheme } from "../colorThemes";
+import Title from "../components/Title";
 
 type GameScreenProps = {
   userNr: number;
@@ -13,10 +14,7 @@ const GameScreen: React.FC<GameScreenProps> = ({ userNr }) => {
         <Text>This is Game Screen</Text>
         <Text>{userNr}</Text>
       </View>
-      <View>
-        <Text style={styles.title}> Opponnent's Guess</Text>
-        <Text> the guessed number</Text>
-      </View>
+      <Title titleText="Opponent's Guess"/>
       <View>
         <Text> Higher or Lower?</Text>
       </View>
