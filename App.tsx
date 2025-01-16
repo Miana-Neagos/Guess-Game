@@ -1,10 +1,20 @@
 import { StatusBar } from "expo-status-bar";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet } from "react-native";
 import StartGameScreen from "./screens/StartGameScreen";
 import { colorTheme } from "./colorTheme";
 import { LinearGradient } from "expo-linear-gradient";
+import { useState } from "react";
+import GameScreen from "./screens/GameScreen";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function App() {
+  const [userNr, setUserNr] = useState<number | null>(null);
+
+  const pickedNrHandler = (inputNr:number) => {
+    setUserNr(inputNr);
+  }
+
+
   return (
     <LinearGradient
       colors={[
@@ -15,8 +25,10 @@ export default function App() {
       style={styles.rootScreen}
     >
       <ImageBackground source={require("./assets/dices.png")} resizeMode="cover" style={styles.rootScreen} imageStyle={styles.backgroudImage}>
-        <StatusBar style="auto" />
-        <StartGameScreen />
+        <StatusBar style="dark" translucent={true} />
+        <SafeAreaView style={styles.rootScreen}>
+          {userNr? <GameScreen userNr={userNr} /> : <StartGameScreen onPickedNr={pickedNrHandler} />}
+        </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   );

@@ -4,16 +4,14 @@ import { colorTheme } from "../colorTheme";
 
 type PrimaryButtonProps = {
   children: string;
+  onPress: () => void;
 };
 
-const PrimaryButton: React.FC<PrimaryButtonProps> = ({ children }) => {
-  const handlePress = () => {
-    console.log("button is pressed");
-  };
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({ children, onPress }) => {
   return (
     <View style={styles.buttonContainer}>
       <Pressable
-        onPress={handlePress}
+        onPress={onPress}
         android_ripple={{ color: colorTheme.yellowIsh }}
         style={({ pressed }) =>
           pressed
