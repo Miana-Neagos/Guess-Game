@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { colorTheme } from "../colorThemes";
-import Title from "../components/Title";
+import { colorTheme } from "../utils/colorThemes";
+import Title from "../components/ui_elements/Title";
+import generateRandomNumber from "../utils/generateRandomNumbers";
+import NumberContainer from "../components/game/NumberContainer";
 
 type GameScreenProps = {
   userNr: number;
 };
 
 const GameScreen: React.FC<GameScreenProps> = ({ userNr }) => {
+  const initialOpponentNr = generateRandomNumber({min: 1, max: 100, excludeNr:userNr});
+  const [opponnentNr, setOpponentNr] = useState<number>(initialOpponentNr);
+
   return (
     <View style={styles.gameContainer}>
-      <View>
+      {/* <View>
         <Text>This is Game Screen</Text>
         <Text>{userNr}</Text>
-      </View>
+      </View> */}
       <Title titleText="Opponent's Guess"/>
+      <NumberContainer opponnentNr={opponnentNr}></NumberContainer>
       <View>
         <Text> Higher or Lower?</Text>
       </View>
@@ -29,7 +35,8 @@ const styles = StyleSheet.create({
   gameContainer: {
     flex: 1,
     padding: 16,
-    alignItems: "center",
+    // alignItems: "center",
+    gap: 16,
   },
   title: {
     fontSize: 24,

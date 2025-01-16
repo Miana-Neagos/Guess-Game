@@ -1,6 +1,6 @@
 import { TextInput, View, StyleSheet, Alert } from "react-native";
-import PrimaryButton from "../components/PrimaryButton";
-import { colorTheme } from "../colorThemes";
+import PrimaryButton from "../components/ui_elements/PrimaryButton";
+import { colorTheme } from "../utils/colorThemes";
 import { useState } from "react";
 
 type StartGameScreenProps = {

@@ -1,6 +1,6 @@
 
 import { View, Text, StyleSheet } from 'react-native';
-import { colorTheme } from '../colorThemes';
+import { colorTheme } from '../../utils/colorThemes';
 
 type TitleProps = {
     titleText: string;
@@ -18,10 +18,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: colorTheme.yellowIsh,
+    color: colorTheme.lightGray,
     textAlign: "center",
     borderWidth: 2,
-    borderColor: colorTheme.yellowIsh,
+    borderColor: colorTheme.lightGray,
+    borderRadius: 8,
     padding: 10,
   }
 });
