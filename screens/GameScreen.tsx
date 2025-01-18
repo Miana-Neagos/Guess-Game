@@ -8,9 +8,10 @@ import PrimaryButton from "../components/ui_elements/PrimaryButton";
 
 type GameScreenProps = {
   userNr: number;
+  onGameOver: () => void;
 };
 
-const GameScreen: React.FC<GameScreenProps> = ({ userNr }) => {
+const GameScreen: React.FC<GameScreenProps> = ({ userNr, onGameOver }) => {
   const [min, setMin] = useState<number>(1);
   const [max, setMax] = useState<number>(100);
   const initialOpponentNr = generateRandomNumber({ min: 1, max: 100, excludeNr: userNr, });
@@ -20,6 +21,13 @@ const GameScreen: React.FC<GameScreenProps> = ({ userNr }) => {
   console.log({ userNr });
   console.log({ opponnentNr });
   console.log({ min, max });
+
+  useEffect(() => {
+    if(userNr === opponnentNr) {
+      console.log('USER NR === COMPUTER');
+      onGameOver();
+    }
+  }, [userNr, opponnentNr, onGameOver])
 
   useEffect(() => {
     console.log('USE EFFECT');
