@@ -11,7 +11,7 @@ const StartGameScreen: React.FC<StartGameScreenProps> = ({onPickedNr}) => {
   const [enteredNr, setEnteredNr] = useState<string>("");
 
   const handleInput = (typedValue: string) => {    
-    console.log(typedValue);
+    // console.log(typedValue);
       setEnteredNr(typedValue);
   };
 
