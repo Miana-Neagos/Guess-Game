@@ -3,15 +3,33 @@ import { ImageBackground, StyleSheet } from "react-native";
 import StartGameScreen from "./screens/StartGameScreen";
 import { colorTheme } from "./utils/colorThemes";
 import { LinearGradient } from "expo-linear-gradient";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GameScreen from "./screens/GameScreen";
 import { SafeAreaView } from "react-native-safe-area-context";
 import GameOverScreen from "./screens/GameOverScreen";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import { hideSplashScreen } from "./utils/splashScreenHelp";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [userNr, setUserNr] = useState<number | null>(null);
   const [gameOver, setGameOver] = useState<boolean>(true);
   const [rounds, setRounds] = useState<number>(0);
+
+
+  const [fontsloaded] = useFonts({
+    'roboto-medium':require('./assets/fonts/Roboto-Medium.ttf'),
+    'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf')
+  });
+
+  console.log('this is APP:', fontsloaded);
+
+  useEffect(() => {
+    console.log('this is USE EFFECT:', fontsloaded);
+    hideSplashScreen(fontsloaded);
+  },[fontsloaded])
 
   const pickedNrHandler = (inputNr:number) => {
     setUserNr(inputNr);
@@ -24,6 +42,7 @@ export default function App() {
   };
 
   let screen;
+  if (!fontsloaded) return null;
 
   if (userNr && !gameOver) {
     screen = <GameScreen userNr={userNr} onGameOver={gameOverHandler} />
@@ -42,8 +61,8 @@ export default function App() {
       ]}
       style={styles.rootScreen}
     >
-      <ImageBackground source={require("./assets/dices.png")} resizeMode="cover" style={styles.rootScreen} imageStyle={styles.backgroudImage}>
-        <StatusBar style="dark" translucent={true} />
+      <ImageBackground source={require("./assets/images/dices.png")} resizeMode="cover" style={styles.rootScreen} imageStyle={styles.backgroudImage}>
+        <StatusBar style="light" translucent={true} />
         <SafeAreaView style={styles.rootScreen}>
           {screen}
           {/* {userNr && !gameOver? <GameScreen userNr={userNr} onGameOver={gameOverHandler} /> : <StartGameScreen onPickedNr={pickedNrHandler} />}
@@ -65,3 +84,6 @@ const styles = StyleSheet.create({
     opacity: 0.15,
   }
 });
+
+
+

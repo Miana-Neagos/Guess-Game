@@ -3,7 +3,7 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 import { colorTheme } from "../../utils/colorThemes";
 
 type PrimaryButtonProps = {
-  children: string;
+  children: React.ReactNode;
   onPress: () => void;
 };
 

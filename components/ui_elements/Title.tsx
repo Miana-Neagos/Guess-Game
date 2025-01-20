@@ -3,13 +3,13 @@ import { View, Text, StyleSheet } from 'react-native';
 import { colorTheme } from '../../utils/colorThemes';
 
 type TitleProps = {
-    titleText: string;
+  children: React.ReactNode;
 };
 
-const Title:React.FC<TitleProps> = ({titleText}) => {
+const Title:React.FC<TitleProps> = ({children}) => {
   return (
     <View>
-      <Text style={styles.title}> {titleText}</Text>
+      <Text style={styles.title}> {children}</Text>
     </View>
   );
 };
@@ -20,10 +20,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: colorTheme.lightGray,
     textAlign: "center",
-    borderWidth: 2,
-    borderColor: colorTheme.lightGray,
+    borderWidth: 0,
+    borderColor: colorTheme.darkGray,
     borderRadius: 8,
-    padding: 10,
+    padding: 16,
+    elevation: 4,
   }
 });
 export default Title;

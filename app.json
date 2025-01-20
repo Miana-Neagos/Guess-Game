@@ -8,9 +8,9 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/dices.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#5b0430"
     },
     "ios": {
       "supportsTablet": true
@@ -29,6 +29,9 @@
       "eas": {
         "projectId": "044c8bf6-4a08-4c04-aeb8-a41b1ae9269d"
       }
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

@@ -5,6 +5,9 @@ import Title from "../components/ui_elements/Title";
 import generateRandomNumber from "../utils/generateRandomNumbers";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui_elements/PrimaryButton";
+import Card from "../components/ui_elements/Card";
+import InstructionText from "../components/ui_elements/InstructionText";
+import Feather from '@expo/vector-icons/Feather';
 
 type GameScreenProps = {
   userNr: number;
@@ -61,18 +64,28 @@ const GameScreen: React.FC<GameScreenProps> = ({ userNr, onGameOver }) => {
 
   return (
     <View style={styles.gameContainer}>
-      <Title titleText="Opponent's Guess" />
+      <Title>Opponent's Guess</Title>
       <NumberContainer opponnentNr={opponnentNr}></NumberContainer>
       <View>
-        <Text> Higher or Lower?</Text>
-        <View>
-          <PrimaryButton onPress={() => nextGuessHandler("higher")}>+</PrimaryButton>
-          <PrimaryButton onPress={() => nextGuessHandler("lower")}>-</PrimaryButton>
-        </View>
+        <Card>
+          <InstructionText style={styles.instructionText}>Higher or Lower</InstructionText>
+          <View style={styles.buttonscontainer}>
+            <View style={styles.buttonElement}>
+              <PrimaryButton onPress={() => nextGuessHandler("higher")}>
+                <Feather name="plus" size={38} color={colorTheme.lightGray} />
+              </PrimaryButton>
+            </View>
+            <View style={styles.buttonElement}>
+              <PrimaryButton onPress={() => nextGuessHandler("lower")}>
+                <Feather name="minus" size={38} color={colorTheme.lightGray} />
+              </PrimaryButton>
+            </View>
+          </View>
+        </Card>
       </View>
-      <View>
+      {/* <View>
         <Text> Game Rounds </Text>
-      </View>
+      </View> */}
     </View>
   );
 };
@@ -81,7 +94,7 @@ const styles = StyleSheet.create({
   gameContainer: {
     flex: 1,
     padding: 16,
-    gap: 16,
+    gap: 30,
   },
   title: {
     fontSize: 24,
@@ -90,6 +103,18 @@ const styles = StyleSheet.create({
     textAlign: "center",
     borderWidth: 2,
     borderColor: colorTheme.yellowIsh,
+    padding: 10,
+  },
+  instructionText: {
+    marginVertical: 10,
+    // fontWeight: "bold",
+  },
+  buttonscontainer: {
+    flexDirection: "row",
+    marginVertical: 10,
+  },
+  buttonElement: {
+    flex: 1,
     padding: 10,
   },
 });

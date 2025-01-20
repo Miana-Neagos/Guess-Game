@@ -15,10 +15,12 @@ const styles = StyleSheet.create({
   numberContainer: {
     alignItems: "center",
     justifyContent: "center",
+    // width: "60%",
     padding: 25,
-    borderWidth: 4,
+    borderWidth: 0,
     borderColor: colorTheme.yellowIsh,
     borderRadius: 8,
+    elevation:4
   },
   numberText: {
     fontSize: 36,
