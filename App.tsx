@@ -24,21 +24,28 @@ export default function App() {
     'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf')
   });
 
-  console.log('this is APP:', fontsloaded);
+  // console.log('this is APP:', fontsloaded);
 
   useEffect(() => {
-    console.log('this is USE EFFECT:', fontsloaded);
+    // console.log('this is USE EFFECT:', fontsloaded);
     hideSplashScreen(fontsloaded);
   },[fontsloaded])
 
+  
   const pickedNrHandler = (inputNr:number) => {
     setUserNr(inputNr);
     setGameOver(false);
     // setRounds(0);
   }
+  
+  const startNewGameHandler = () => {
+    setUserNr(null);
+    setRounds(0);
+  }
 
-  const gameOverHandler = () => {
+  const gameOverHandler = (numberOfRounds:number) => {
     setGameOver(true);
+    setRounds(numberOfRounds);
   };
 
   let screen;
@@ -47,7 +54,7 @@ export default function App() {
   if (userNr && !gameOver) {
     screen = <GameScreen userNr={userNr} onGameOver={gameOverHandler} />
   } else if (userNr && gameOver) {
-    screen = <GameOverScreen />
+    screen = <GameOverScreen userNr={userNr} rounds={rounds} onStartGame={startNewGameHandler} />
   } else {
     screen = <StartGameScreen onPickedNr={pickedNrHandler} />
   } 

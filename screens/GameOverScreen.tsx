@@ -4,7 +4,13 @@ import { colorTheme } from "../utils/colorThemes";
 import Card from "../components/ui_elements/Card";
 import PrimaryButton from "../components/ui_elements/PrimaryButton";
 
-const GameOverScreen: React.FC = () => {
+type GameScreenProps = {
+  userNr: number,
+  rounds: number,
+  onStartGame: () => void;
+}
+
+const GameOverScreen: React.FC<GameScreenProps> = ({userNr, rounds, onStartGame}) => {
   return (
     <View style={styles.container}>
       <Title>GAME OVER</Title>
@@ -13,13 +19,13 @@ const GameOverScreen: React.FC = () => {
       </View>
       <Card>
         <Text style={styles.mainText}>
-          Phone needed <Text style={styles.innerText}>X</Text> rounds to guess 
-          <Text style={styles.innerText}>Y</Text>
+          Phone needed <Text style={styles.innerText}> {rounds} </Text> rounds to guess 
+          <Text style={styles.innerText}> {userNr} </Text>
         </Text>
       </Card>
       <PrimaryButton onPress={() => {
         console.log('Start new game was pressed');
-        
+        onStartGame();        
       }}>Start New Game</PrimaryButton>
     </View>
   );
@@ -27,7 +33,6 @@ const GameOverScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 100,
@@ -49,12 +54,10 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textAlign: "center",
     color: colorTheme.lightGray,
-    // padding: 10,
   },
   innerText: {
     fontSize: 28,
     color: colorTheme.yellowIsh,
-    letterSpacing: 8,
   },
 });
 

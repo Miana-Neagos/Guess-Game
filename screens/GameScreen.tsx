@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert, FlatList } from "react-native";
 import { colorTheme } from "../utils/colorThemes";
 import Title from "../components/ui_elements/Title";
 import generateRandomNumber from "../utils/generateRandomNumbers";
@@ -7,58 +7,78 @@ import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui_elements/PrimaryButton";
 import Card from "../components/ui_elements/Card";
 import InstructionText from "../components/ui_elements/InstructionText";
-import Feather from '@expo/vector-icons/Feather';
+import Feather from "@expo/vector-icons/Feather";
+import GuessAttempsLog from "../components/game/GuessAttemptsLog";
 
 type GameScreenProps = {
   userNr: number;
-  onGameOver: () => void;
+  onGameOver: (numberOfRounds:number) => void;
+
 };
 
 const GameScreen: React.FC<GameScreenProps> = ({ userNr, onGameOver }) => {
   const [min, setMin] = useState<number>(1);
   const [max, setMax] = useState<number>(100);
-  const initialOpponentNr = generateRandomNumber({ min: 1, max: 100, excludeNr: userNr, });
+  const initialOpponentNr = generateRandomNumber({
+    min: 1,
+    max: 100,
+    excludeNr: userNr,
+  });
   const [opponnentNr, setOpponentNr] = useState<number>(initialOpponentNr);
   const [firstRender, setFirstRender] = useState<boolean>(true);
-  console.log("This is GAME SCREEN");
-  console.log({ userNr });
-  console.log({ opponnentNr });
-  console.log({ min, max });
+  const [guessAttempt, setGuessAttempt] = useState<number[]>([initialOpponentNr]);
+  // console.log("This is GAME SCREEN");
+  // console.log({ userNr });
+  // console.log({ opponnentNr });
+  // console.log({ min, max });
 
   useEffect(() => {
-    if(userNr === opponnentNr) {
-      console.log('USER NR === COMPUTER');
-      onGameOver();
+    if (userNr === opponnentNr) {
+      // console.log("USER NR === COMPUTER");
+      onGameOver(guessAttempt.length);
     }
-  }, [userNr, opponnentNr, onGameOver])
+  }, [userNr, opponnentNr, onGameOver]);
 
   useEffect(() => {
-    console.log('USE EFFECT');
+    // console.log("USE EFFECT");
     // Skip the first useEffect execution to avoid overwriting initialOpponentNr with the next guess.
-    if(firstRender) {
+    if (firstRender) {
       setFirstRender(false);
       return;
     }
-    
-    const nextGuess = generateRandomNumber({ min, max, excludeNr: opponnentNr});
+
+    const nextGuess = generateRandomNumber({
+      min,
+      max,
+      excludeNr: opponnentNr,
+    });
     setOpponentNr(nextGuess);
-    console.log({ min, max, nextGuess });
+    setGuessAttempt((prevGuess) => [nextGuess, ...prevGuess]);
+    // console.log({ min, max, nextGuess });
+    // console.log({guessAttempt});
   }, [min, max]);
 
   const nextGuessHandler = (direction: string) => {
-    console.log("GUESS HANDLER");
+    // console.log("GUESS HANDLER");
 
-    console.log({ direction });
-    if ((direction === "lower" && opponnentNr < userNr) || (direction === "higher" && opponnentNr > userNr)) {
-      Alert.alert('Liar, liar pants on fire!',  `Are you sure you're playing fair?`, [{ text: 'Try again', style: 'cancel' }]);
-      return;  
+    // console.log({ direction });
+    if (
+      (direction === "lower" && opponnentNr < userNr) ||
+      (direction === "higher" && opponnentNr > userNr)
+    ) {
+      Alert.alert(
+        "Liar, liar pants on fire!",
+        `Are you sure you're playing fair?`,
+        [{ text: "Try again", style: "cancel" }]
+      );
+      return;
     }
     if (direction === "higher") {
       setMin(opponnentNr + 1);
-      console.log({ min });
+      // console.log({ min });
     } else {
       setMax(opponnentNr);
-      console.log({ max });
+      // console.log({ max });
     }
   };
 
@@ -66,9 +86,10 @@ const GameScreen: React.FC<GameScreenProps> = ({ userNr, onGameOver }) => {
     <View style={styles.gameContainer}>
       <Title>Opponent's Guess</Title>
       <NumberContainer opponnentNr={opponnentNr}></NumberContainer>
-      <View>
         <Card>
-          <InstructionText style={styles.instructionText}>Higher or Lower</InstructionText>
+          <InstructionText style={styles.instructionText}>
+            Higher or Lower
+          </InstructionText>
           <View style={styles.buttonscontainer}>
             <View style={styles.buttonElement}>
               <PrimaryButton onPress={() => nextGuessHandler("higher")}>
@@ -82,10 +103,14 @@ const GameScreen: React.FC<GameScreenProps> = ({ userNr, onGameOver }) => {
             </View>
           </View>
         </Card>
-      </View>
-      {/* <View>
-        <Text> Game Rounds </Text>
-      </View> */}
+        <View style={styles.flatListContainer}>
+          <FlatList
+            data={guessAttempt}
+            renderItem={(itemData) => <GuessAttempsLog roundNumber={itemData.index + 1} guessAttemptNumber={itemData.item}></GuessAttempsLog>            }
+            keyExtractor={(item) => item.toString()}
+            contentContainerStyle={{alignItems: "center"}}
+          ></FlatList>
+        </View>
     </View>
   );
 };
@@ -94,7 +119,7 @@ const styles = StyleSheet.create({
   gameContainer: {
     flex: 1,
     padding: 16,
-    gap: 30,
+    gap: 20,
   },
   title: {
     fontSize: 24,
@@ -107,7 +132,6 @@ const styles = StyleSheet.create({
   },
   instructionText: {
     marginVertical: 10,
-    // fontWeight: "bold",
   },
   buttonscontainer: {
     flexDirection: "row",
@@ -117,6 +141,10 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
   },
+  flatListContainer: {
+    marginTop: 10,
+    flex: 1,
+  }
 });
 
 export default GameScreen;

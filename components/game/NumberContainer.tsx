@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
   numberContainer: {
     alignItems: "center",
     justifyContent: "center",
-    // width: "60%",
     padding: 25,
     borderWidth: 0,
     borderColor: colorTheme.yellowIsh,

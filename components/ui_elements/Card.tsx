@@ -14,7 +14,6 @@ const Card:React.FC<CardProps> = ({children}) => {
 const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "column",
-    // gap: 35,
     alignItems: "center",
     justifyContent: "center",
     marginHorizontal: 24,

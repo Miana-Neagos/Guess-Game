@@ -4,7 +4,6 @@ import { colorTheme } from "../utils/colorThemes";
 import { useState } from "react";
 import Title from "../components/ui_elements/Title";
 import Card from "../components/ui_elements/Card";
-import Instructions from "../components/ui_elements/InstructionText";
 import InstructionText from "../components/ui_elements/InstructionText";
 
 type StartGameScreenProps = {
@@ -34,7 +33,6 @@ const StartGameScreen: React.FC<StartGameScreenProps> = ({onPickedNr}) => {
   return (
     <View style={styles.rootContainer}>
       <Title>Guess The Number</Title>
-      {/* <View style={styles.inputContainer}> */}
       <Card>
         <InstructionText>Enter a number</InstructionText>
         <TextInput

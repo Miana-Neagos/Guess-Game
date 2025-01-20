@@ -1,0 +1,45 @@
+import { StyleSheet, Text, View } from "react-native"
+import { colorTheme } from "../../utils/colorThemes"
+type GuessAttempsLogProps = {
+    roundNumber: number,
+    guessAttemptNumber: number
+}
+const GuessAttempsLog:React.FC<GuessAttempsLogProps> = ({roundNumber, guessAttemptNumber}) => {
+    console.log({roundNumber});
+    console.log({guessAttemptNumber});
+    
+    
+    return (
+        <View style={styles.listContainer}>
+            <Text style={styles.itemText}>Round: {roundNumber}</Text>
+            <Text style={styles.itemText}>Guessed number: {guessAttemptNumber}</Text>
+        </View>
+    )
+}
+
+const styles=StyleSheet.create({
+    listContainer: {
+        borderColor: colorTheme.darkMagenta,
+        borderWidth: 1,
+        borderRadius: 40,
+        padding: 12,
+        marginVertical: 4,
+        backgroundColor: colorTheme.yellowIsh,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '90%',
+        elevation: 4,
+        // shadowColor: 'black',
+        // shadowOffset: { width: 0, height: 0 },
+        // shadowOpacity: 0.25,
+        // shadowRadius: 3,
+      },
+      itemText: {
+        // paddingVertical: 10,
+        fontSize: 16,
+        fontWeight: "bold",
+        // color: colorTheme.,
+      }
+})
+
+export default GuessAttempsLog;
