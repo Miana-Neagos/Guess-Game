@@ -19,7 +19,7 @@ const GameOverScreen: React.FC<GameScreenProps> = ({userNr, rounds, onStartGame}
       </View>
       <Card>
         <Text style={styles.mainText}>
-          Phone needed <Text style={styles.innerText}> {rounds} </Text> rounds to guess 
+          <Text style={styles.innerText}> {rounds} </Text> rounds to guess the number 
           <Text style={styles.innerText}> {userNr} </Text>
         </Text>
       </Card>

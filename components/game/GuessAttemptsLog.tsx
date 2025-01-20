@@ -4,11 +4,7 @@ type GuessAttempsLogProps = {
     roundNumber: number,
     guessAttemptNumber: number
 }
-const GuessAttempsLog:React.FC<GuessAttempsLogProps> = ({roundNumber, guessAttemptNumber}) => {
-    console.log({roundNumber});
-    console.log({guessAttemptNumber});
-    
-    
+const GuessAttempsLog:React.FC<GuessAttempsLogProps> = ({roundNumber, guessAttemptNumber}) => {     
     return (
         <View style={styles.listContainer}>
             <Text style={styles.itemText}>Round: {roundNumber}</Text>
@@ -35,10 +31,8 @@ const styles=StyleSheet.create({
         // shadowRadius: 3,
       },
       itemText: {
-        // paddingVertical: 10,
         fontSize: 16,
         fontWeight: "bold",
-        // color: colorTheme.,
       }
 })
 

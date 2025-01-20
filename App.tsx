@@ -24,10 +24,7 @@ export default function App() {
     'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf')
   });
 
-  // console.log('this is APP:', fontsloaded);
-
   useEffect(() => {
-    // console.log('this is USE EFFECT:', fontsloaded);
     hideSplashScreen(fontsloaded);
   },[fontsloaded])
 
@@ -35,7 +32,6 @@ export default function App() {
   const pickedNrHandler = (inputNr:number) => {
     setUserNr(inputNr);
     setGameOver(false);
-    // setRounds(0);
   }
   
   const startNewGameHandler = () => {
@@ -72,8 +68,6 @@ export default function App() {
         <StatusBar style="light" translucent={true} />
         <SafeAreaView style={styles.rootScreen}>
           {screen}
-          {/* {userNr && !gameOver? <GameScreen userNr={userNr} onGameOver={gameOverHandler} /> : <StartGameScreen onPickedNr={pickedNrHandler} />}
-          {userNr && gameOver? <GameOverScreen /> : undefined} */}
         </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
@@ -83,9 +77,6 @@ export default function App() {
 const styles = StyleSheet.create({
   rootScreen: {
     flex: 1,
-    // backgroundColor: colorTheme.yellowIsh,
-    // alignItems: 'center',
-    // justifyContent: 'center',
   },
   backgroudImage: {
     opacity: 0.15,

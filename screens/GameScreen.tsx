@@ -27,20 +27,14 @@ const GameScreen: React.FC<GameScreenProps> = ({ userNr, onGameOver }) => {
   const [opponnentNr, setOpponentNr] = useState<number>(initialOpponentNr);
   const [firstRender, setFirstRender] = useState<boolean>(true);
   const [guessAttempt, setGuessAttempt] = useState<number[]>([initialOpponentNr]);
-  // console.log("This is GAME SCREEN");
-  // console.log({ userNr });
-  // console.log({ opponnentNr });
-  // console.log({ min, max });
 
   useEffect(() => {
     if (userNr === opponnentNr) {
-      // console.log("USER NR === COMPUTER");
       onGameOver(guessAttempt.length);
     }
   }, [userNr, opponnentNr, onGameOver]);
 
   useEffect(() => {
-    // console.log("USE EFFECT");
     // Skip the first useEffect execution to avoid overwriting initialOpponentNr with the next guess.
     if (firstRender) {
       setFirstRender(false);
@@ -54,14 +48,9 @@ const GameScreen: React.FC<GameScreenProps> = ({ userNr, onGameOver }) => {
     });
     setOpponentNr(nextGuess);
     setGuessAttempt((prevGuess) => [nextGuess, ...prevGuess]);
-    // console.log({ min, max, nextGuess });
-    // console.log({guessAttempt});
   }, [min, max]);
 
   const nextGuessHandler = (direction: string) => {
-    // console.log("GUESS HANDLER");
-
-    // console.log({ direction });
     if (
       (direction === "lower" && opponnentNr < userNr) ||
       (direction === "higher" && opponnentNr > userNr)
@@ -75,10 +64,8 @@ const GameScreen: React.FC<GameScreenProps> = ({ userNr, onGameOver }) => {
     }
     if (direction === "higher") {
       setMin(opponnentNr + 1);
-      // console.log({ min });
     } else {
       setMax(opponnentNr);
-      // console.log({ max });
     }
   };
 
