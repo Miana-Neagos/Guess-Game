@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { Dimensions, StyleSheet, View} from "react-native";
 import { colorTheme } from "../../utils/colorThemes";
 
 type CardProps = {
@@ -11,12 +11,16 @@ const Card:React.FC<CardProps> = ({children}) => {
   )
 };
 
+const deviceHeight = Dimensions.get('window').height;
+const deviceWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    marginHorizontal: 24,
+    // marginHorizontal: 24,
+    marginHorizontal: deviceWidth < 600 ? 10 : 64,
     borderRadius: 8,
     padding: 16,
     backgroundColor: colorTheme.darkMagenta,

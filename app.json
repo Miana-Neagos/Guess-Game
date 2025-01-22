@@ -3,12 +3,12 @@
     "name": "mini-guess-game",
     "slug": "mini-guess-game",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/dices.png",
+      "image": "./assets/images/dices.png",
       "resizeMode": "cover",
       "backgroundColor": "#5b0430"
     },

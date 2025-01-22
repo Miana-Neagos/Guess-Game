@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 16,
     elevation: 4,
+    maxWidth: "80%",
+    width: 300,
   }
 });
 export default Title;
+  

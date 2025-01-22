@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Alert, FlatList } from "react-native";
+import { View, Text, StyleSheet, Alert, FlatList, Dimensions } from "react-native";
 import { colorTheme } from "../utils/colorThemes";
 import Title from "../components/ui_elements/Title";
 import generateRandomNumber from "../utils/generateRandomNumbers";
@@ -102,11 +102,15 @@ const GameScreen: React.FC<GameScreenProps> = ({ userNr, onGameOver }) => {
   );
 };
 
+const deviceHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   gameContainer: {
     flex: 1,
     padding: 16,
-    gap: 20,
+    // gap: 20,
+    gap: deviceHeight < 400 ? 10 : 20,
+    alignItems: "center",
   },
   title: {
     fontSize: 24,

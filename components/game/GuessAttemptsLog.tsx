@@ -23,7 +23,7 @@ const styles=StyleSheet.create({
         backgroundColor: colorTheme.yellowIsh,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '90%',
+        width: '95%',
         elevation: 4,
         // shadowColor: 'black',
         // shadowOffset: { width: 0, height: 0 },

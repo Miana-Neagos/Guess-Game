@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
 import Title from "../components/ui_elements/Title";
 import { colorTheme } from "../utils/colorThemes";
 import Card from "../components/ui_elements/Card";
@@ -15,7 +15,7 @@ const GameOverScreen: React.FC<GameScreenProps> = ({userNr, rounds, onStartGame}
     <View style={styles.container}>
       <Title>GAME OVER</Title>
       <View style={styles.imgContainer}>
-        <Image source={require("../assets/images/gameover_img.png")}></Image>
+        <Image source={require("../assets/images/gameover_img.png")} style={styles.imageElement}></Image>
       </View>
       <Card>
         <Text style={styles.mainText}>
@@ -23,29 +23,36 @@ const GameOverScreen: React.FC<GameScreenProps> = ({userNr, rounds, onStartGame}
           <Text style={styles.innerText}> {userNr} </Text>
         </Text>
       </Card>
-      <PrimaryButton onPress={() => {
-        console.log('Start new game was pressed');
-        onStartGame();        
-      }}>Start New Game</PrimaryButton>
+      <PrimaryButton onPress={() => onStartGame()}>Start New Game</PrimaryButton>
     </View>
   );
 };
+
+const deviceHeight = Dimensions.get('window').height;
+const deviceWidth = Dimensions.get('window').width;
+
 
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 100,
+    // marginTop: 30,
+    marginTop: deviceHeight < 400 ? 30 : 0,
     gap: 30,
+    flex: 1,
   },
   imgContainer: {
     alignItems: "center",
-    height: 350,
-    width: "90%",
+    // height: 350,
+    // width: "90%",
+    height: deviceHeight < 400 ?  150 : 380,
+    width: deviceWidth < 400 ? 150 : 380,
+    aspectRatio: 1,
     overflow: "hidden",
-    borderRadius: 175,
+    // borderRadius: 175,
+    borderRadius: deviceWidth < 380 ? 75 : 200,
   },
-  imageElemen: {
+  imageElement: {
     width: "100%",
     height: "100%",
   },
