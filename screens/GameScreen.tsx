@@ -8,7 +8,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { colorTheme } from "../utils/colorThemes";
-import Title from "../components/ui_elements/Title.ios";
+import Title from "../components/ui_elements/Title";
 import generateRandomNumber from "../utils/generateRandomNumbers";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui_elements/PrimaryButton";
@@ -153,9 +153,9 @@ const deviceHeight = Dimensions.get("window").height;
 const styles = StyleSheet.create({
   gameContainer: {
     flex: 1,
-    padding: deviceHeight < 400 ? 2 : 16,
+    padding: deviceHeight > 355 ? 16 : 2,
     // gap: 20,
-    gap: deviceHeight < 400 ? 10 : 20,
+    gap: deviceHeight > 350 ? 20 : 10,
     alignItems: "center",
   },
   title: {

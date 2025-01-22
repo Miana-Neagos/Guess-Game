@@ -1,5 +1,5 @@
 
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { colorTheme } from '../../utils/colorThemes';
 
 type TitleProps = {

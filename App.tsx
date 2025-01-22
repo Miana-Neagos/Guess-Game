@@ -10,6 +10,7 @@ import GameOverScreen from "./screens/GameOverScreen";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { hideSplashScreen } from "./utils/splashScreenHelp";
+import React from "react";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -56,21 +57,23 @@ export default function App() {
   } 
   
   return (
-    <LinearGradient
-      colors={[
-        colorTheme.darkestMagenta,
-        colorTheme.darkMagenta,
-        colorTheme.yellowIsh,
-      ]}
-      style={styles.rootScreen}
-    >
-      <ImageBackground source={require("./assets/images/dices.png")} resizeMode="cover" style={styles.rootScreen} imageStyle={styles.backgroudImage}>
-        <StatusBar style="light" translucent={true} />
-        <SafeAreaView style={styles.rootScreen}>
-          {screen}
-        </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+    <>
+      <StatusBar style="light" translucent={true} />
+      <LinearGradient
+        colors={[
+          colorTheme.darkestMagenta,
+          colorTheme.darkMagenta,
+          colorTheme.yellowIsh,
+        ]}
+        style={styles.rootScreen}
+      >
+        <ImageBackground source={require("./assets/images/dices.png")} resizeMode="cover" style={styles.rootScreen} imageStyle={styles.backgroudImage}>
+          <SafeAreaView style={styles.rootScreen}>
+            {screen}
+          </SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
