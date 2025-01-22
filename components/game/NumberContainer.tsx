@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions, useWindowDimensions } from "react-native";
+import { View, Text, StyleSheet, useWindowDimensions } from "react-native";
 import { colorTheme } from "../../utils/colorThemes";
 
 type NumberContainerProps = {

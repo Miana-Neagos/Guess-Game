@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, Text, useWindowDimensions, View } from "react-native"
+import { StyleSheet, Text, useWindowDimensions, View } from "react-native"
 import { colorTheme } from "../../utils/colorThemes"
 type GuessAttempsLogProps = {
     roundNumber: number,
@@ -24,7 +24,6 @@ const styles=StyleSheet.create({
         borderColor: colorTheme.darkMagenta,
         borderWidth: 1,
         borderRadius: 40,
-        // padding: 12,
         marginVertical: 4,
         backgroundColor: colorTheme.yellowIsh,
         flexDirection: 'row',

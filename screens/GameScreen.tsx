@@ -8,7 +8,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { colorTheme } from "../utils/colorThemes";
-import Title from "../components/ui_elements/Title";
+import Title from "../components/ui_elements/Title.ios";
 import generateRandomNumber from "../utils/generateRandomNumbers";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui_elements/PrimaryButton";

@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Image, Dimensions, useWindowDimensions, ScrollView } from "react-native";
-import Title from "../components/ui_elements/Title";
+import { View, Text, StyleSheet, Image, useWindowDimensions, ScrollView } from "react-native";
+import Title from '../components/ui_elements/Title';
 import { colorTheme } from "../utils/colorThemes";
 import Card from "../components/ui_elements/Card";
 import PrimaryButton from "../components/ui_elements/PrimaryButton";
